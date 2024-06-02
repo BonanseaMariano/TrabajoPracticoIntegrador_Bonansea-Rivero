@@ -3,8 +3,6 @@ package aristas;
 import nodos.Nodo;
 
 public class Conexion {
-    private Nodo sourceNode;
-    private Nodo targetNode;
     private String tipoDeConexion;
     private double bandwith;
     private double latencia;
@@ -15,9 +13,7 @@ public class Conexion {
     public Conexion() {
     }
 
-    public Conexion(Nodo sourceNode, Nodo targetNode, String tipoDeConexion, double bandwith, double latencia, boolean status, int errorRate) {
-        this.sourceNode = sourceNode;
-        this.targetNode = targetNode;
+    public Conexion(String tipoDeConexion, double bandwith, double latencia, boolean status, int errorRate) {
         this.tipoDeConexion = tipoDeConexion;
         this.bandwith = bandwith;
         this.latencia = latencia;
@@ -26,21 +22,7 @@ public class Conexion {
     }
 
     //Getters and Setters
-    public Nodo getSourceNode() {
-        return sourceNode;
-    }
 
-    public void setSourceNode(Nodo sourceNode) {
-        this.sourceNode = sourceNode;
-    }
-
-    public Nodo getTargetNode() {
-        return targetNode;
-    }
-
-    public void setTargetNode(Nodo targetNode) {
-        this.targetNode = targetNode;
-    }
 
     public String getTipoDeConexion() {
         return tipoDeConexion;
