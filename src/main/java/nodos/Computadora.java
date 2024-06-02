@@ -6,7 +6,7 @@ public class Computadora extends Nodo {
         super();
     }
 
-    public Computadora(String ubicacion, boolean status, int macAdress, int ipAdress, String id) {
+    public Computadora(String ubicacion, boolean status, String macAdress, String ipAdress, String id) {
         super(ubicacion, status, macAdress, ipAdress, id);
     }
 

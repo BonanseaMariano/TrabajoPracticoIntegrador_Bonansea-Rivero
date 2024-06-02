@@ -10,7 +10,7 @@ public class Router extends Nodo {
         super();
     }
 
-    public Router(String ubicacion, boolean status, int macAdress, int ipAdress, String id, String modelo, String firmware, double throughput) {
+    public Router(String ubicacion, boolean status, String macAdress, String ipAdress, String id, String modelo, String firmware, double throughput) {
         super(ubicacion, status, macAdress, ipAdress, id);
         this.modelo = modelo;
         this.firmware = firmware;

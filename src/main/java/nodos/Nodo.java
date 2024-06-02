@@ -2,8 +2,8 @@ package nodos;
 
 public abstract class Nodo {
     private String id;
-    private int ipAdress;
-    private int macAdress;
+    private String ipAdress;
+    private String macAdress;
     private boolean status;
     private String ubicacion;
 
@@ -11,7 +11,7 @@ public abstract class Nodo {
     protected Nodo() {
     }
 
-    protected Nodo(String ubicacion, boolean status, int macAdress, int ipAdress, String id) {
+    protected Nodo(String ubicacion, boolean status, String macAdress, String ipAdress, String id) {
         this.ubicacion = ubicacion;
         this.status = status;
         this.macAdress = macAdress;
@@ -36,19 +36,19 @@ public abstract class Nodo {
         this.status = status;
     }
 
-    public int getMacAdress() {
+    public String getMacAdress() {
         return macAdress;
     }
 
-    public void setMacAdress(int macAdress) {
+    public void setMacAdress(String macAdress) {
         this.macAdress = macAdress;
     }
 
-    public int getIpAdress() {
+    public String getIpAdress() {
         return ipAdress;
     }
 
-    public void setIpAdress(int ipAdress) {
+    public void setIpAdress(String ipAdress) {
         this.ipAdress = ipAdress;
     }
 
