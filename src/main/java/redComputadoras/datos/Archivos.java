@@ -4,8 +4,8 @@ import redComputadoras.modelo.Conexion;
 import net.datastructures.Edge;
 import net.datastructures.Graph;
 import net.datastructures.Vertex;
-import nodos.Computadora;
-import nodos.Router;
+import redComputadoras.modelo.Computadora;
+import redComputadoras.modelo.Router;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -129,7 +129,7 @@ public class Archivos {
             latencia = read.nextDouble();
             status = read.nextBoolean();
             errorRate = read.nextInt();
-            list.add(new Conexion(tipoDeConexion, bandwith, latencia, status, errorRate);
+            list.add(new Conexion(tipoDeConexion, bandwith, latencia, status, errorRate));
         }
         read.close();
         return list;
