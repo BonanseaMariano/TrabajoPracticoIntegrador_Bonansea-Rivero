@@ -36,25 +36,4 @@ public class Interfaz {
         }
         return equipos.get(ip);
     }
-
-//    public static void resultado(List<Tramo> recorrido) {
-//        int tiempoTotal = 0;
-//        int tiempoSubte = 0;
-//        int tiempoCaminando = 0;
-//        for (Tramo t : recorrido) {
-//            System.out.println(t.getEstacion1().getLinea().getCodigo() + "-"
-//                    + t.getEstacion1().getNombre() + " > "
-//                    + t.getEstacion2().getLinea().getCodigo() + "-"
-//                    + t.getEstacion2().getNombre() + " :" + t.getTiempo());
-//            tiempoTotal += t.getTiempo();
-//            if (t.getEstacion1().getLinea().equals(t.getEstacion2().getLinea()))
-//                tiempoSubte += t.getTiempo();
-//            else
-//                tiempoCaminando += t.getTiempo();
-//        }
-//        System.out.println("Tiempo Total: " + tiempoTotal);
-//        System.out.println("Tiempo Subte: " + tiempoSubte);
-//        System.out.println("Tiempo Caminando: " + tiempoCaminando);
-//    }
-
 }

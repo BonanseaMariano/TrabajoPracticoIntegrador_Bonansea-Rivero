@@ -37,8 +37,9 @@ public class Calculo {
      * @param equipo2 the destination equipment
      * @return a list of connections that form the shortest path
      */
-    public List<Conexion> rapido(Equipo equipo1, Equipo equipo2) {
-        // copia grafo
+    public List<Conexion> traceroute(Equipo equipo1, Equipo equipo2) {
+        //NOTA: En vez de devolver una lista de conexiones deberia ser de nodos o de Strings de ip REVISAR
+        // copia grafos
         Graph<Equipo, Integer> rapido = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
 
@@ -53,7 +54,7 @@ public class Calculo {
         }
         PositionalList<Vertex<Equipo>> lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
 
-        List<Conexion> conexiones = new ArrayList<Conexion>();
+        List<Conexion> conexiones = new ArrayList<>();
 
         Vertex<Equipo> v1, v2;
         Position<Vertex<Equipo>> aux = lista.first();
@@ -66,12 +67,13 @@ public class Calculo {
         return conexiones;
     }
 
-
+    /**
+     * Checks if an equipment is online.
+     *
+     * @param equipo the equipment to check
+     * @return true if the equipment is online, false otherwise
+     */
     public boolean ping(Equipo equipo) {
-        try {
-            return equipo.isStatus();
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
+        return equipo.isStatus();
     }
 }

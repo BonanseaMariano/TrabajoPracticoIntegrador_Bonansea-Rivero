@@ -59,6 +59,24 @@ public class Aplicacion {
                     break;
 
                 case Constante.TRACEROUTE:
+                    Equipo origen = Interfaz.ingresarEquipo(equipos);
+                    if (origen == null) {
+                        break;
+                    }
+                    Equipo destino = Interfaz.ingresarEquipo(equipos);
+                    if (destino == null) {
+                        break;
+                    }
+                    List<Conexion> path = c.traceroute(origen, destino);
+                    if (path.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "No hay ruta");
+                    } else {
+                        String s = "";
+                        for (Conexion p : path) {
+                            s += p.toString() + "\n";
+                        }
+                        JOptionPane.showMessageDialog(null, s);
+                    }
                     break;
 
                 case Constante.TRANSMISION_ENTRE_ROUTERS:
