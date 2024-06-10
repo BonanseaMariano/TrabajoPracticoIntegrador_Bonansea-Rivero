@@ -66,4 +66,12 @@ public class Calculo {
         return conexiones;
     }
 
+
+    public boolean ping(Equipo equipo) {
+        try {
+            return equipo.isStatus();
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+    }
 }

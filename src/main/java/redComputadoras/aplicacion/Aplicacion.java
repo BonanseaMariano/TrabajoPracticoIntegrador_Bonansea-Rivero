@@ -38,35 +38,32 @@ public class Aplicacion {
             System.exit(-1);
         }
 
-        // Ingreso datos usuario
-        Integer opcion = Interfaz.opcion();
-        if (opcion == null || opcion.equals(Constante.SALIR)) {
-            System.exit(0);
-        }
-
-        Equipo origen = Interfaz.ingresarEquipoOrigen(equipos);
-        Equipo destino = Interfaz.ingresarEquipoDestino(equipos);
-
-        // Realizar cálculo
+        // Realizar cálculo (Crear el grafo)
         Calculo c = new Calculo(equipos, conexiones);
 
-        List<Conexion> recorrido = null;
+        // Ingreso datos usuario
+        Integer opcion = null;
+        do {
+            opcion = Interfaz.opcion();
+            switch (opcion) {
+                case Constante.PING:
+                    Equipo equipo = Interfaz.ingresarEquipo(equipos);
+                    if (equipo == null) {
+                        break;
+                    }
+                    if (c.ping(equipo)) {
+                        JOptionPane.showMessageDialog(null, "Equipo activo");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Equipo inactivo");
+                    }
+                    break;
 
-        switch (opcion) {
-            case Constante.MAS_RAPIDO:
-                if (c.graphEmpty()) {
-                    System.out.println("El grafo no tiene elementos");
-                } else
-                    recorrido = c.rapido(origen, destino);
-                for (Conexion r : recorrido) {
-                    System.out.println(r.getEquipo1().getNombre() + " -> " + r.getEquipo2().getNombre());
-                }
-                break;
-        }
+                case Constante.TRACEROUTE:
+                    break;
 
-        // Mostrar resultado
-//        Interfaz.resultado(recorrido);
-
+                case Constante.TRANSMISION_ENTRE_ROUTERS:
+                    break;
+            }
+        } while (opcion != null && !opcion.equals(Constante.SALIR));
     }
-
 }
