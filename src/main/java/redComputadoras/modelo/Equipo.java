@@ -2,6 +2,7 @@ package redComputadoras.modelo;
 
 public abstract class Equipo {
     private String id;
+    private String nombre;
     private String ipAdress;
     private String macAdress;
     private boolean status;
@@ -11,12 +12,13 @@ public abstract class Equipo {
     protected Equipo() {
     }
 
-    protected Equipo(String ubicacion, boolean status, String macAdress, String ipAdress, String id) {
-        this.ubicacion = ubicacion;
-        this.status = status;
-        this.macAdress = macAdress;
-        this.ipAdress = ipAdress;
+    public Equipo(String id, String nombre, String ipAdress, String macAdress, boolean status, String ubicacion) {
         this.id = id;
+        this.nombre = nombre;
+        this.ipAdress = ipAdress;
+        this.macAdress = macAdress;
+        this.status = status;
+        this.ubicacion = ubicacion;
     }
 
     //Getters and Setters
@@ -58,5 +60,13 @@ public abstract class Equipo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

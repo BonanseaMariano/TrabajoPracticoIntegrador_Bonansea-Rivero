@@ -6,8 +6,7 @@ public class Computadora extends Equipo {
         super();
     }
 
-    public Computadora(String ubicacion, boolean status, String macAdress, String ipAdress, String id) {
-        super(ubicacion, status, macAdress, ipAdress, id);
+    public Computadora(String id, String nombre, String ipAdress, String macAdress, boolean status, String ubicacion) {
+        super(id, nombre, ipAdress, macAdress, status, ubicacion);
     }
-
 }

@@ -10,8 +10,8 @@ public class Router extends Equipo {
         super();
     }
 
-    public Router(String ubicacion, boolean status, String macAdress, String ipAdress, String id, String modelo, String firmware, double throughput) {
-        super(ubicacion, status, macAdress, ipAdress, id);
+    public Router(String id, String nombre, String ipAdress, String macAdress, boolean status, String ubicacion, String modelo, String firmware, double throughput) {
+        super(id, nombre, ipAdress, macAdress, status, ubicacion);
         this.modelo = modelo;
         this.firmware = firmware;
         this.throughput = throughput;
@@ -41,4 +41,5 @@ public class Router extends Equipo {
     public void setThroughput(double throughput) {
         this.throughput = throughput;
     }
+
 }
