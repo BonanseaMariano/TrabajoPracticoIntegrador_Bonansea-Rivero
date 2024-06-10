@@ -5,13 +5,18 @@ import redComputadoras.aplicacion.Constante;
 import redComputadoras.modelo.Equipo;
 
 
+import javax.swing.*;
 import java.util.List;
 
 public class Interfaz {
 
-    // Usuario ingresa opci�n
-    public static int opcion() {
-        return Constante.MAS_RAPIDO;
+    /**
+     * Menu de opciones principal del programa.
+     *
+     * @return an integer representing the selected option
+     */
+    public static Integer opcion() {
+        return JOptionPane.showOptionDialog(null, "**** Seleccione una opcion ****", "Menu de opciones", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new String[]{"Camino Mas Rapido", "Opcion 2", "Opcion 3", "Salir"}, null);
     }
 
     // Usuario ingresa estacion origen

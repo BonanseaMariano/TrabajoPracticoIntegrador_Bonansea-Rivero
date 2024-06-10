@@ -8,6 +8,7 @@ import redComputadoras.logica.Calculo;
 import redComputadoras.modelo.Conexion;
 import redComputadoras.modelo.Equipo;
 
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -38,7 +39,11 @@ public class Aplicacion {
         }
 
         // Ingreso datos usuario
-        int opcion = Interfaz.opcion();
+        Integer opcion = Interfaz.opcion();
+        if (opcion == null || opcion.equals(Constante.SALIR)) {
+            System.exit(0);
+        }
+
         Equipo origen = Interfaz.ingresarEquipoOrigen(equipos);
         Equipo destino = Interfaz.ingresarEquipoDestino(equipos);
 
@@ -46,10 +51,15 @@ public class Aplicacion {
         Calculo c = new Calculo(equipos, conexiones);
 
         List<Conexion> recorrido = null;
-        if (c.graphEmpty())
-            System.out.println("El grafo se encuentra vacio!");
-        else if (opcion == Constante.MAS_RAPIDO)
-            recorrido = c.rapido(origen, destino);
+
+        switch (opcion) {
+            case Constante.MAS_RAPIDO:
+                if (c.graphEmpty()) {
+                    System.out.println("El grafo no tiene elementos");
+                } else
+                    recorrido = c.rapido(origen, destino);
+                break;
+        }
 
         // Mostrar resultado
 //        Interfaz.resultado(recorrido);
