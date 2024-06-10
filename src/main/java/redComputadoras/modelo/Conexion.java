@@ -18,10 +18,27 @@ public class Conexion {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.tipoDeConexion = tipoDeConexion;
-        this.bandwith = bandwith;
-        this.latencia = latencia;
+
+        //Para evitar que existan arcos negativos (velocidades negativas) para realizar dikstra
+        if (bandwith < 0)
+            this.bandwith = 0;
+        else
+            this.bandwith = bandwith;
+
+        //Para evitar que existan arcos negativos (velocidades negativas) para realizar dikstra
+        if (latencia < 0)
+            this.latencia = 0;
+        else
+            this.latencia = latencia;
+
         this.status = status;
-        this.errorRate = errorRate;
+
+        //Para evitar que existan arcos negativos (velocidades negativas) para realizar dikstra
+        if (errorRate < 0)
+            this.errorRate = 0;
+        else
+            this.errorRate = errorRate;
+
         velocidad = calcularVelocidad(bandwith, latencia, errorRate);
     }
 

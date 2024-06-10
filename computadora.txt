@@ -1,0 +1,2 @@
+111;Marian;12345678;2A3B;true;sala101;
+222;Lu;4321;3B4A;true;sala102;

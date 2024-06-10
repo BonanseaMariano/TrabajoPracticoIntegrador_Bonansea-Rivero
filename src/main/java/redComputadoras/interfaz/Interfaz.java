@@ -21,12 +21,12 @@ public class Interfaz {
 
     // Usuario ingresa estacion origen
     public static Equipo ingresarEquipoOrigen(TreeMap<String, Equipo> equipos) {
-        return equipos.get("a2");
+        return equipos.get("111");
     }
 
     // Usuario ingresa equipo destino
     public static Equipo ingresarEquipoDestino(TreeMap<String, Equipo> equipos) {
-        return equipos.get("c6");
+        return equipos.get("222");
     }
 
 //    public static void resultado(List<Tramo> recorrido) {

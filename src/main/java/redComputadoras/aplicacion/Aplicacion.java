@@ -58,6 +58,9 @@ public class Aplicacion {
                     System.out.println("El grafo no tiene elementos");
                 } else
                     recorrido = c.rapido(origen, destino);
+                for (Conexion r : recorrido) {
+                    System.out.println(r.getEquipo1().getNombre() + " -> " + r.getEquipo2().getNombre());
+                }
                 break;
         }
 
