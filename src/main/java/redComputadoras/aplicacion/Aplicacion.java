@@ -47,7 +47,7 @@ public class Aplicacion {
             opcion = Interfaz.opcion();
             switch (opcion) {
                 case Constante.PING:
-                    Equipo equipo = Interfaz.ingresarEquipo(equipos);
+                    Equipo equipo = Interfaz.ingresarEquipo(c.getIpMap());
                     if (equipo == null) {
                         break;
                     }
@@ -59,11 +59,11 @@ public class Aplicacion {
                     break;
 
                 case Constante.TRACEROUTE:
-                    Equipo origen = Interfaz.ingresarEquipo(equipos);
+                    Equipo origen = Interfaz.ingresarEquipo(c.getIpMap());
                     if (origen == null) {
                         break;
                     }
-                    Equipo destino = Interfaz.ingresarEquipo(equipos);
+                    Equipo destino = Interfaz.ingresarEquipo(c.getIpMap());
                     if (destino == null) {
                         break;
                     }
@@ -81,7 +81,7 @@ public class Aplicacion {
 
                 case Constante.TRANSMISION_ENTRE_ROUTERS:
                     String message = "";
-                    for (Integer i : c.transmisionEntreRouters()) {
+                    for (String i : c.transmisionEntreRouters()) {
                         message += i + "\n";
                     }
                     JOptionPane.showMessageDialog(null, message, "Transmision entre routers", JOptionPane.PLAIN_MESSAGE, null);

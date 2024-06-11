@@ -11,6 +11,7 @@ public class Calculo {
 
     private Graph<Equipo, Conexion> redComputadoras;
     private TreeMap<String, Vertex<Equipo>> vertices;
+    private TreeMap<String, Equipo> ipMap;
 
     public Calculo(TreeMap<String, Equipo> equipos, List<Conexion> conexiones) {
 
@@ -18,16 +19,22 @@ public class Calculo {
 
         // Cargar equipos
         vertices = new TreeMap<String, Vertex<Equipo>>();
-        for (Entry<String, Equipo> equipo : equipos.entrySet())
+        //Cargar mapa de ips
+        ipMap = new TreeMap<String, Equipo>();
+
+        for (Entry<String, Equipo> equipo : equipos.entrySet()) {
             vertices.put(equipo.getKey(), redComputadoras.insertVertex(equipo.getValue()));
+            ipMap.put(equipo.getValue().getIpAdress(), equipo.getValue());
+        }
+
 
         // Cargar conexiones
         for (Conexion conexion : conexiones)
             redComputadoras.insertEdge(vertices.get(conexion.getEquipo1().getId()), vertices.get(conexion.getEquipo2().getId()), conexion);
     }
 
-    public boolean graphEmpty() {
-        return redComputadoras.numVertices() == 0 && redComputadoras.numEdges() == 0;
+    public TreeMap<String, Equipo> getIpMap() {
+        return ipMap;
     }
 
     /**
@@ -72,7 +79,7 @@ public class Calculo {
         return equipos;
     }
 
-    public List<Integer> transmisionEntreRouters() {
+    public List<String> transmisionEntreRouters() {
         // copia grafos
         Graph<Equipo, Integer> copia = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
@@ -88,10 +95,11 @@ public class Calculo {
         }
         PositionalList<Edge<Integer>> lista = GraphAlgorithms.MST(copia);
 
-        List<Integer> edges = new ArrayList<>();
+        List<String> edges = new ArrayList<>();
 
         for (Edge<Integer> result : lista) {
-            edges.add(result.getElement());
+            Vertex<Equipo> v[] = copia.endVertices(result);
+            edges.add(v[0].getElement().getNombre() + " <-> " + v[1].getElement().getNombre());
         }
 
         return edges;

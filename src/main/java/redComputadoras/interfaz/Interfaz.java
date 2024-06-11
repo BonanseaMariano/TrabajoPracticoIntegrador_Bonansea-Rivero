@@ -1,5 +1,6 @@
 package redComputadoras.interfaz;
 
+import net.datastructures.Entry;
 import net.datastructures.TreeMap;
 import redComputadoras.aplicacion.Constante;
 import redComputadoras.modelo.Equipo;
@@ -25,15 +26,15 @@ public class Interfaz {
         //Pasa los keys del mapa de equipos a un array de string
         String[] equiposArray = new String[equipos.size()];
         int i = 0;
-        for (String key : equipos.keySet()) {
-            equiposArray[i] = key;
+        for (Entry<String, Equipo> entry : equipos.entrySet()) {
+            equiposArray[i] = entry.getValue().getClass().getSimpleName() + ": " + entry.getKey();
             i++;
         }
 
-        String id = (String) JOptionPane.showInputDialog(null, "Seleccione el id del equipo", "Equipo", JOptionPane.PLAIN_MESSAGE, null, equiposArray, null);
-        if (id == null) {
+        String ip = (String) JOptionPane.showInputDialog(null, "Seleccione el ip del equipo", "Equipo", JOptionPane.PLAIN_MESSAGE, null, equiposArray, null);
+        if (ip == null) {
             return null;
         }
-        return equipos.get(id);
+        return equipos.get(ip);
     }
 }
