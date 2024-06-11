@@ -30,10 +30,10 @@ public class Interfaz {
             i++;
         }
 
-        String ip = (String) JOptionPane.showInputDialog(null, "Seleccione el ip del equipo", "Equipo", JOptionPane.PLAIN_MESSAGE, null, equiposArray, null);
-        if (ip == null) {
+        String id = (String) JOptionPane.showInputDialog(null, "Seleccione el id del equipo", "Equipo", JOptionPane.PLAIN_MESSAGE, null, equiposArray, null);
+        if (id == null) {
             return null;
         }
-        return equipos.get(ip);
+        return equipos.get(id);
     }
 }

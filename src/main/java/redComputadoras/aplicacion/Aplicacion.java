@@ -67,15 +67,15 @@ public class Aplicacion {
                     if (destino == null) {
                         break;
                     }
-                    List<Conexion> path = c.traceroute(origen, destino);
+                    List<Equipo> path = c.traceroute(origen, destino);
                     if (path.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "No hay ruta");
+                        JOptionPane.showMessageDialog(null, "No hay ruta", "Traceroute", JOptionPane.ERROR_MESSAGE);
                     } else {
-                        String s = "";
-                        for (Conexion p : path) {
-                            s += p.toString() + "\n";
+                        String message = "";
+                        for (Equipo e : path) {
+                            message += e + " -> \n";
                         }
-                        JOptionPane.showMessageDialog(null, s);
+                        JOptionPane.showMessageDialog(null, message, "Traceroute", JOptionPane.PLAIN_MESSAGE, null);
                     }
                     break;
 

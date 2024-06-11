@@ -120,4 +120,9 @@ public class Conexion {
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
+
+    @Override
+    public String toString() {
+        return equipo1 + " -> \n" + equipo2 + "\n**** Velocidad: " + velocidad + ", Tipo: " + tipoDeConexion + ", status: " + status + " ****\n";
+    }
 }

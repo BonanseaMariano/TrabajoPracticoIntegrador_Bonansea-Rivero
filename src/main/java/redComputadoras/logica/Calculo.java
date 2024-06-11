@@ -37,8 +37,7 @@ public class Calculo {
      * @param equipo2 the destination equipment
      * @return a list of connections that form the shortest path
      */
-    public List<Conexion> traceroute(Equipo equipo1, Equipo equipo2) {
-        //NOTA: En vez de devolver una lista de conexiones deberia ser de nodos o de Strings de ip REVISAR
+    public List<Equipo> traceroute(Equipo equipo1, Equipo equipo2) {
         // copia grafos
         Graph<Equipo, Integer> rapido = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
@@ -54,17 +53,13 @@ public class Calculo {
         }
         PositionalList<Vertex<Equipo>> lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
 
-        List<Conexion> conexiones = new ArrayList<>();
+        List<Equipo> equipos = new ArrayList<>();
 
-        Vertex<Equipo> v1, v2;
-        Position<Vertex<Equipo>> aux = lista.first();
-        while (lista.after(aux) != null) {
-            v1 = aux.getElement();
-            aux = lista.after(aux);
-            v2 = aux.getElement();
-            conexiones.add(redComputadoras.getEdge(vertices.get(v1.getElement().getId()), vertices.get(v2.getElement().getId())).getElement());
+        for (Vertex<Equipo> result : lista) {
+            equipos.add(result.getElement());
         }
-        return conexiones;
+
+        return equipos;
     }
 
     /**

@@ -42,4 +42,8 @@ public class Router extends Equipo {
         this.throughput = throughput;
     }
 
+    @Override
+    public String toString() {
+        return "Router{ " + super.toString() + "}";
+    }
 }

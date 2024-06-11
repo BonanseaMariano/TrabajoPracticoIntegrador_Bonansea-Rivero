@@ -69,4 +69,9 @@ public abstract class Equipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", nombre: " + nombre + ", IP: " + ipAdress + ", Status: " + status + ", Ubicacion: " + ubicacion;
+    }
 }
