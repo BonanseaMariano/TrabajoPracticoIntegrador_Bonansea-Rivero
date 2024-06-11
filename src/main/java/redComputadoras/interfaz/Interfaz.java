@@ -35,6 +35,10 @@ public class Interfaz {
         if (ip == null) {
             return null;
         }
+        //Corto el string ip para obtener solo el id del equipo
+        String[] aux = ip.split(": ");
+        ip = aux[1];
+
         return equipos.get(ip);
     }
 }
