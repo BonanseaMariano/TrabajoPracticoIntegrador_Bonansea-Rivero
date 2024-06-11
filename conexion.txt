@@ -1,2 +1,7 @@
 111;1;wifi;10;10;true;0;
 222;1;wifi;5;5;true;0;
+1;2;cable;6;6;true;0;
+333;2;wifi;9;9;true;0;
+2;3;cable;7;7;true;0;
+444;3;wifi;3;3;true;0;
+3;1;cable;8;8;true;0;
