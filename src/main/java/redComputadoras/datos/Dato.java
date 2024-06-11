@@ -75,15 +75,15 @@ public class Dato {
 
         Equipo v1, v2;
         String tipoDeConexion;
-        double bandwith, latencia;
+        double latencia;
         boolean status;
-        int errorRate;
+        int bandwith, errorRate;
 
         while (read.hasNext()) {
             v1 = equipos.get(read.next());
             v2 = equipos.get(read.next());
             tipoDeConexion = read.next();
-            bandwith = read.nextDouble();
+            bandwith = read.nextInt();
             latencia = read.nextDouble();
             status = read.nextBoolean();
             errorRate = read.nextInt();

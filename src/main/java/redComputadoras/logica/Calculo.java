@@ -49,7 +49,7 @@ public class Calculo {
 
         for (Edge<Conexion> result : redComputadoras.edges()) {
             vert = redComputadoras.endVertices(result);
-            rapido.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getVelocidad());
+            rapido.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
         }
         PositionalList<Vertex<Equipo>> lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
 
