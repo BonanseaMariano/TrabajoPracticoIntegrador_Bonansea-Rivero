@@ -58,16 +58,8 @@ public class Calculo {
         // copia grafos
         Graph<Equipo, Integer> rapido = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
+        copiarGrafo(rapido, res);
 
-        for (Vertex<Equipo> result : redComputadoras.vertices())
-            res.put(result.getElement(), rapido.insertVertex(result.getElement()));
-
-        Vertex<Equipo>[] vert;
-
-        for (Edge<Conexion> result : redComputadoras.edges()) {
-            vert = redComputadoras.endVertices(result);
-            rapido.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
-        }
         PositionalList<Vertex<Equipo>> lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
 
         List<Equipo> equipos = new ArrayList<>();
@@ -83,16 +75,8 @@ public class Calculo {
         // copia grafos
         Graph<Equipo, Integer> copia = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
+        copiarGrafo(copia, res);
 
-        for (Vertex<Equipo> result : redComputadoras.vertices())
-            res.put(result.getElement(), copia.insertVertex(result.getElement()));
-
-        Vertex<Equipo>[] vert;
-
-        for (Edge<Conexion> result : redComputadoras.edges()) {
-            vert = redComputadoras.endVertices(result);
-            copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
-        }
         PositionalList<Edge<Integer>> lista = GraphAlgorithms.MST(copia);
 
         List<String> edges = new ArrayList<>();
@@ -103,5 +87,24 @@ public class Calculo {
         }
 
         return edges;
+    }
+
+    /**
+     * Creates a copy of the graph wit the format <Equipo, Integer>
+     *
+     * @param copia the copy of the graph
+     * @param res   the map of vertices asosiated with the copy
+     */
+    public void copiarGrafo(Graph<Equipo, Integer> copia, Map<Equipo, Vertex<Equipo>> res) {
+
+        for (Vertex<Equipo> result : redComputadoras.vertices())
+            res.put(result.getElement(), copia.insertVertex(result.getElement()));
+
+        Vertex<Equipo>[] vert;
+
+        for (Edge<Conexion> result : redComputadoras.edges()) {
+            vert = redComputadoras.endVertices(result);
+            copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
+        }
     }
 }

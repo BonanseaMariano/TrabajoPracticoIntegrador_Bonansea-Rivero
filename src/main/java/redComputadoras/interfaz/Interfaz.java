@@ -5,7 +5,6 @@ import net.datastructures.TreeMap;
 import redComputadoras.aplicacion.Constante;
 import redComputadoras.modelo.Equipo;
 
-
 import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
