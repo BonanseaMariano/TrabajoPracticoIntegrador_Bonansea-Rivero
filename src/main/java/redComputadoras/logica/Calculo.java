@@ -31,6 +31,16 @@ public class Calculo {
     }
 
     /**
+     * Checks if an equipment is online.
+     *
+     * @param equipo the equipment to check
+     * @return true if the equipment is online, false otherwise
+     */
+    public boolean ping(Equipo equipo) {
+        return equipo.isStatus();
+    }
+
+    /**
      * Calculates the shortest path between two equipment in the network.
      *
      * @param equipo1 the starting equipment
@@ -62,13 +72,28 @@ public class Calculo {
         return equipos;
     }
 
-    /**
-     * Checks if an equipment is online.
-     *
-     * @param equipo the equipment to check
-     * @return true if the equipment is online, false otherwise
-     */
-    public boolean ping(Equipo equipo) {
-        return equipo.isStatus();
+    public List<Integer> transmisionEntreRouters() {
+        // copia grafos
+        Graph<Equipo, Integer> copia = new AdjacencyMapGraph<>(false);
+        Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
+
+        for (Vertex<Equipo> result : redComputadoras.vertices())
+            res.put(result.getElement(), copia.insertVertex(result.getElement()));
+
+        Vertex<Equipo>[] vert;
+
+        for (Edge<Conexion> result : redComputadoras.edges()) {
+            vert = redComputadoras.endVertices(result);
+            copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
+        }
+        PositionalList<Edge<Integer>> lista = GraphAlgorithms.MST(copia);
+
+        List<Integer> edges = new ArrayList<>();
+
+        for (Edge<Integer> result : lista) {
+            edges.add(result.getElement());
+        }
+
+        return edges;
     }
 }

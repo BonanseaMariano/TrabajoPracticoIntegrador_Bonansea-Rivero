@@ -80,6 +80,11 @@ public class Aplicacion {
                     break;
 
                 case Constante.TRANSMISION_ENTRE_ROUTERS:
+                    String message = "";
+                    for (Integer i : c.transmisionEntreRouters()) {
+                        message += i + "\n";
+                    }
+                    JOptionPane.showMessageDialog(null, message, "Transmision entre routers", JOptionPane.PLAIN_MESSAGE, null);
                     break;
             }
         } while (opcion != null && !opcion.equals(Constante.SALIR));
