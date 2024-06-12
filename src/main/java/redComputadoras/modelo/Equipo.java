@@ -72,6 +72,6 @@ public abstract class Equipo {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", nombre: " + nombre + ", IP: " + ipAdress + ", Status: " + status + ", Ubicacion: " + ubicacion;
+        return "ID: " + id + ", nombre: " + nombre + ", IP: " + ipAdress + ", Ubicacion: " + ubicacion;
     }
 }

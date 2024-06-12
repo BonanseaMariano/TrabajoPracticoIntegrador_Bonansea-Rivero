@@ -83,7 +83,7 @@ public class Calculo {
 
         for (Edge<Integer> result : lista) {
             Vertex<Equipo> v[] = copia.endVertices(result);
-            edges.add(v[0].getElement().getNombre() + " <-> " + v[1].getElement().getNombre());
+            edges.add(v[0].getElement().getClass().getSimpleName() + ": " + v[0].getElement().getIpAdress() + " <-> " + v[1].getElement().getClass().getSimpleName() + ": " + v[1].getElement().getIpAdress());
         }
 
         return edges;
