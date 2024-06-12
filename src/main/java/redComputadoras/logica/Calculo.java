@@ -56,14 +56,20 @@ public class Calculo {
      */
     public List<Equipo> traceroute(Equipo equipo1, Equipo equipo2) {
         // copia grafos
+        List<Equipo> equipos = new ArrayList<>();
+        /*
+        if(!equipo1.isStatus() || !equipo2.isStatus()) {
+            return equipos;
+        }*/
         Graph<Equipo, Integer> rapido = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
+        PositionalList<Vertex<Equipo>> lista;
         copiarGrafo(rapido, res);
-
-        PositionalList<Vertex<Equipo>> lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
-
-        List<Equipo> equipos = new ArrayList<>();
-
+        try {
+            lista = GraphAlgorithms.shortestPathList(rapido, res.get(equipo1), res.get(equipo2));
+        } catch (IllegalArgumentException e) {
+            return equipos;
+        }
         for (Vertex<Equipo> result : lista) {
             equipos.add(result.getElement());
         }
@@ -97,14 +103,18 @@ public class Calculo {
      */
     public void copiarGrafo(Graph<Equipo, Integer> copia, Map<Equipo, Vertex<Equipo>> res) {
 
-        for (Vertex<Equipo> result : redComputadoras.vertices())
-            res.put(result.getElement(), copia.insertVertex(result.getElement()));
-
+        for (Vertex<Equipo> result : redComputadoras.vertices()) {
+            if (result.getElement().isStatus()) {
+                res.put(result.getElement(), copia.insertVertex(result.getElement()));
+            }
+        }
         Vertex<Equipo>[] vert;
 
         for (Edge<Conexion> result : redComputadoras.edges()) {
             vert = redComputadoras.endVertices(result);
-            copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
+            if (result.getElement().isStatus() && vert[0].getElement().isStatus() && vert[1].getElement().isStatus()) {
+                copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
+            }
         }
     }
 }
