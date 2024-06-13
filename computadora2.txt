@@ -1,0 +1,11 @@
+001;PCPrincipal;192.168.1.100;00:0a:95:9d:68:20;true;Oficina Central;
+002;Laptop-01;192.168.1.20;11:22:33:44:55:66;true;Sala de reuniones;
+003;PCSecundaria;192.168.2.100;00:0a:95:9d:68:21;true;Sucursal A;
+004;Estación-01;192.168.1.40;12:34:56:78:90:AB;true;Área de desarrollo;
+005;PCTerciaria;192.168.3.100;00:0a:95:9d:68:22;true;Sucursal B;
+006;Portátil-02;192.168.1.60;99:88:77:66:55:44;true;Sala de conferencias;
+007;PC7;192.168.1.107;00:0a:95:9d:68:42;activo;Centro de datos;
+008;PCCuarto;192.168.4.100;00:0a:95:9d:68:23;true;Sucursal C;
+009;PC-02;192.168.1.70;A1:B2:C3:D4:E5:F6;true;Área de soporte;
+010;PC9;192.168.1.109;00:0a:95:9d:68:44;inactivo;Sala de conferencias;
+011;PC10;192.168.1.110;00:0a:95:9d:68:45;activo;Área de desarrollo;

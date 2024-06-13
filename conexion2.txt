@@ -1,0 +1,16 @@
+001;100;FibraOptica;100;5;true;0;
+002;100;FibraOptica;100;5;True;1;
+003;200;ADSL;20;20;true;5;
+004;200;CableCoaxial;50;10;true;3;
+005;300;4GLTE;30;30;true;2;
+200;500;Satélite;10;600;true;1;
+006;300;Wi-Fi;50;15;true;5;
+007;300;DSL;10;25;true;2;
+100;500;FibraSimétrica;200;3;true;2;
+008;400;5G;150;8;true;4;
+300;500;CableDeRed;100;1;true;1;
+009;400;Wi-Fi;600Mbps;15ms;activo;2;
+200;500;Ethernet;100Mbps;5ms;activo;0;
+010;400;Wi-Fi;300Mbps;10ms;inactivo;1;
+200;400;Ethernet;1000Mbps;1ms;activo;0;
+011;400;Wi-Fi;600Mbps;15ms;activo;2;
