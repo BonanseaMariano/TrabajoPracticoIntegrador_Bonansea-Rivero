@@ -52,9 +52,9 @@ public class Aplicacion {
                         break;
                     }
                     if (c.ping(equipo)) {
-                        JOptionPane.showMessageDialog(null, "Equipo activo");
+                        JOptionPane.showMessageDialog(null, "Equipo activo", "Ping", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Equipo inactivo");
+                        JOptionPane.showMessageDialog(null, "Equipo inactivo", "Ping", JOptionPane.ERROR_MESSAGE);
                     }
                     break;
 

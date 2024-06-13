@@ -57,10 +57,6 @@ public class Calculo {
     public List<Equipo> traceroute(Equipo equipo1, Equipo equipo2) {
         // copia grafos
         List<Equipo> equipos = new ArrayList<>();
-        /*
-        if(!equipo1.isStatus() || !equipo2.isStatus()) {
-            return equipos;
-        }*/
         Graph<Equipo, Integer> rapido = new AdjacencyMapGraph<>(false);
         Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
         PositionalList<Vertex<Equipo>> lista;
@@ -77,6 +73,11 @@ public class Calculo {
         return equipos;
     }
 
+    /**
+     * Generates the transmission between routers based on the minimum spanning tree of the graph.
+     *
+     * @return a list of strings representing the transmission between routers
+     */
     public List<String> transmisionEntreRouters() {
         // copia grafos
         Graph<Equipo, Integer> copia = new AdjacencyMapGraph<>(false);

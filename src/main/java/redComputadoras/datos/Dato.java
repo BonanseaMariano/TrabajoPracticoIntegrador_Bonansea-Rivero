@@ -14,6 +14,14 @@ import java.util.Scanner;
 
 public class Dato {
 
+    /**
+     * Loads equipment data from the specified files and returns them as a TreeMap.
+     *
+     * @param fileNameComputadoras the name of the file containing computer data
+     * @param fileNameRouters      the name of the file containing router data
+     * @return a TreeMap containing the loaded equipment data
+     * @throws FileNotFoundException if either file cannot be found
+     */
     public static TreeMap<String, Equipo> cargarEquipos(String fileNameComputadoras, String fileNameRouters) throws FileNotFoundException {
         TreeMap<String, Equipo> equipos = new TreeMap<>();
         cargarComputadoras(equipos, fileNameComputadoras);
@@ -21,6 +29,13 @@ public class Dato {
         return equipos;
     }
 
+    /**
+     * Loads computer data from the specified file into a TreeMap of Equipo objects.
+     *
+     * @param equipos  the TreeMap to store the loaded computer data
+     * @param fileName the name of the file containing the computer data
+     * @throws FileNotFoundException if the file cannot be found
+     */
     private static void cargarComputadoras(TreeMap<String, Equipo> equipos, String fileName) throws FileNotFoundException {
         Scanner read;
 
@@ -42,6 +57,13 @@ public class Dato {
         read.close();
     }
 
+    /**
+     * Loads router data from the specified file into a TreeMap of Equipo objects.
+     *
+     * @param equipos  the TreeMap to store the loaded router data
+     * @param fileName the name of the file containing the router data
+     * @throws FileNotFoundException if the file cannot be found
+     */
     private static void cargarRouters(TreeMap<String, Equipo> equipos, String fileName) throws FileNotFoundException {
         Scanner read;
 
@@ -67,6 +89,13 @@ public class Dato {
         read.close();
     }
 
+    /**
+     * Loads connections data from the specified file into a List of Conexion objects.
+     *
+     * @param fileName the name of the file containing the connection data
+     * @param equipos  the TreeMap containing the Equipos to establish connections
+     * @return the list of Conexion objects representing the loaded connections
+     */
     public static List<Conexion> cargarConexiones(String fileName, TreeMap<String, Equipo> equipos) throws FileNotFoundException {
         Scanner read;
         List<Conexion> conexiones = new ArrayList<Conexion>();
