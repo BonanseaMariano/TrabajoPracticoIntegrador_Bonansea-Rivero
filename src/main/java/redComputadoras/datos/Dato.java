@@ -26,6 +26,9 @@ public class Dato {
         TreeMap<String, Equipo> equipos = new TreeMap<>();
         cargarComputadoras(equipos, fileNameComputadoras);
         cargarRouters(equipos, fileNameRouters);
+        if (equipos.isEmpty()) {
+            throw new FileNotFoundException("No se encontraron datos de equipos");
+        }
         return equipos;
     }
 
