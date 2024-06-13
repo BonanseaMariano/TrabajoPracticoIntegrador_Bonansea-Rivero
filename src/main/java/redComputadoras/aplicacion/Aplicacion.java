@@ -87,19 +87,6 @@ public class Aplicacion {
                     }
                     JOptionPane.showMessageDialog(null, message, "Transmision entre routers", JOptionPane.PLAIN_MESSAGE, null);
                     break;
-
-                case Constante.FLUJO_MAXIMO:
-                    origen = Interfaz.ingresarEquipo(c.getIpMap());
-                    if (origen == null) {
-                        break;
-                    }
-                    destino = Interfaz.ingresarEquipo(c.getIpMap());
-                    if (destino == null) {
-                        break;
-                    }
-                    int a = c.maxflow(origen, destino);
-                    System.out.println(a);
-                    break;
             }
         } while (opcion != null && !opcion.equals(Constante.SALIR));
     }
