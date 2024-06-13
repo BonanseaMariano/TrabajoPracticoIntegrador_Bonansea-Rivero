@@ -5,6 +5,6 @@ Rivero, Lucia Jazmin.
 
 Notas:
 Formato de los archivos de lectura:
-Router: id;nombre;ipAdress;status;ubicacion;modelo;firmware;throughput;
+Router: id;nombre;ipAdress;macAdress;status;ubicacion;modelo;firmware;throughput;
 Computadora: id;nombre;ipAdress;macAdress;status;ubicacion;
 Conexion: idNodoOrigen;idNodoDestino;tipoDeConexion;bandwith;latencia;status;errorRate;
