@@ -325,41 +325,4 @@ public class GraphAlgorithms {
         return path;
     }
 
-    public static <V> int fordFulkerson(Graph<V, Integer> g, Vertex<V> src, Vertex<V> target) {
-        int acum = 0;
-        for (ArrayList<Edge<Integer>> c : allPaths(g, src, target)) {
-            int min = c.getFirst().getElement();
-            for (Edge<Integer> arc : c) {
-                if (arc.getElement() < min)
-                    min = arc.getElement();
-            }
-            acum += min;
-        }
-        return acum;
-    }
-
-    private static <V> ArrayList<ArrayList<Edge<Integer>>> allPaths(Graph<V, Integer> g, Vertex<V> src, Vertex<V> target) {
-        ArrayList<ArrayList<Edge<Integer>>> allPaths = new ArrayList<>();
-        ArrayList<Edge<Integer>> currentPath = new ArrayList<>();
-        Map<Vertex<V>, Integer> res = shortestPathLengths(g, src);
-        Map<Vertex<V>, Edge<Integer>> tree = spTree(g, src, res);
-        findPaths(g, src, target, tree, currentPath, allPaths);
-        return allPaths;
-    }
-
-    private static <V> void findPaths(Graph<V, Integer> g, Vertex<V> current, Vertex<V> target, Map<Vertex<V>, Edge<Integer>> tree, ArrayList<Edge<Integer>> currentPath, ArrayList<ArrayList<Edge<Integer>>> allPaths) {
-        for (Edge<Integer> arc : g.outgoingEdges(current)) {
-            Vertex<V> next = g.opposite(current, arc);
-            if (tree.get(next) == arc) {
-                currentPath.add(arc);
-                if (next == target) {
-                    allPaths.add(new ArrayList<>(currentPath));
-                } else {
-                    findPaths(g, next, target, tree, currentPath, allPaths);
-                }
-                currentPath.remove(currentPath.size() - 1);
-            }
-        }
-    }
-
 }

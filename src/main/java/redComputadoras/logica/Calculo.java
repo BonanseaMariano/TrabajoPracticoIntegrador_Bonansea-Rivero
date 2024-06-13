@@ -96,17 +96,6 @@ public class Calculo {
         return edges;
     }
 
-    public int maxflow(Equipo equipo1, Equipo equipo2) {
-        // copia grafos
-        Graph<Equipo, Integer> copia = new AdjacencyMapGraph<>(false);
-        Map<Equipo, Vertex<Equipo>> res = new ProbeHashMap<>();
-        copiarGrafo(copia, res);
-        Vertex<Equipo> e1 = vertices.get(equipo1.getId());
-        Vertex<Equipo> e2 = vertices.get(equipo1.getId());
-
-        return GraphAlgorithms.fordFulkerson(copia, e1, e2);
-    }
-
     /**
      * Creates a copy of the graph wit the format <Equipo, Integer>
      *
