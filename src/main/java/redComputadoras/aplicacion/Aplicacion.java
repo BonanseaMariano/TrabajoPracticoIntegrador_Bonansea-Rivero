@@ -21,7 +21,7 @@ public class Aplicacion {
         try {
             CargarParametros.parametros();
         } catch (IOException e) {
-            System.err.print("Error al cargar parámetros");
+            System.err.print("Error al cargar parï¿½metros");
             System.exit(-1);
         }
 
@@ -38,12 +38,13 @@ public class Aplicacion {
             System.exit(-1);
         }
 
-        // Realizar cálculo (Crear el grafo)
+        // Realizar cï¿½lculo (Crear el grafo)
         Calculo c = new Calculo(equipos, conexiones);
 
         // Ingreso datos usuario
         Integer opcion = null;
         do {
+            Equipo origen, destino;
             opcion = Interfaz.opcion();
             switch (opcion) {
                 case Constante.PING:
@@ -59,11 +60,11 @@ public class Aplicacion {
                     break;
 
                 case Constante.TRACEROUTE:
-                    Equipo origen = Interfaz.ingresarEquipo(c.getIpMap());
+                    origen = Interfaz.ingresarEquipo(c.getIpMap());
                     if (origen == null) {
                         break;
                     }
-                    Equipo destino = Interfaz.ingresarEquipo(c.getIpMap());
+                    destino = Interfaz.ingresarEquipo(c.getIpMap());
                     if (destino == null) {
                         break;
                     }
@@ -85,6 +86,19 @@ public class Aplicacion {
                         message += i + "\n";
                     }
                     JOptionPane.showMessageDialog(null, message, "Transmision entre routers", JOptionPane.PLAIN_MESSAGE, null);
+                    break;
+
+                case Constante.FLUJO_MAXIMO:
+                    origen = Interfaz.ingresarEquipo(c.getIpMap());
+                    if (origen == null) {
+                        break;
+                    }
+                    destino = Interfaz.ingresarEquipo(c.getIpMap());
+                    if (destino == null) {
+                        break;
+                    }
+                    int a = c.maxflow(origen, destino);
+                    System.out.println(a);
                     break;
             }
         } while (opcion != null && !opcion.equals(Constante.SALIR));
