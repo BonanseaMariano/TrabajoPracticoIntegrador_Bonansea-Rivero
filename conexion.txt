@@ -3,9 +3,9 @@
 003;200;ADSL;20;20;true;5;
 004;200;CableCoaxial;50;10;true;3;
 005;300;4GLTE;30;30;true;2;
-200;300;Satélite;10;600;true;1;
+200;300;Satélite;100;600;true;1;
 006;300;Wi-Fi;50;15;true;5;
 007;400;DSL;10;25;true;2;
 100;200;FibraSimétrica;200;3;true;2;
-008;400;5G;150;8;true;4;
+008;400;CableCoaxial;50;8;true;4;
 300;400;CableDeRed;100;1;true;1;
