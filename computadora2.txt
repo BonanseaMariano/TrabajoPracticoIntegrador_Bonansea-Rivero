@@ -1,7 +1,7 @@
 001;PCPrincipal;192.168.1.100;00:0a:95:9d:68:20;true;Oficina Central;
 002;Laptop-01;192.168.1.101;00:22:33:44:55:66;true;Sala de reuniones;
 003;PCSecundaria;192.168.2.100;00:0a:95:9d:68:21;true;Sucursal A;
-004;Estación-01;192.168.1.101;12:34:56:78:90:AB;true;Área de desarrollo;
+004;Estación-01;192.168.2.101;12:34:56:78:90:AB;true;Área de desarrollo;
 005;PCTerciaria;192.168.3.100;00:0a:95:9d:68:22;false;Sucursal B;
 006;Portátil-02;192.168.3.101;99:88:77:66:55:44;true;Sala de conferencias;
 007;PC7;192.168.3.102;00:0a:95:9d:68:42;true;Centro de datos;
