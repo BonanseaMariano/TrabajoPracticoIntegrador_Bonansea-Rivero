@@ -1,5 +1,5 @@
 100;routerOficina;192.168.1.1;00:0a:95:9d:68:16;true;OficinaCentral;Cisco RV340;1.0.03.15;900;
 200;routerSucursalA;192.168.2.1;00:0a:95:9d:68:17;true;SucursalA;Netgeat Nighthawk R700;V1.0.9.88_10.2.88;1300;
-300;routerSucursalB;192.168.3.1;00:0a:95:9d:68:18;true;SucursalB;Tp-Link Archer C7;315.3 build 180305 Rel.51282n;1750;
+300;routerSucursalB;192.168.3.1;00:0a:95:9d:68:18;true;SucursalB;Tp-Link Arscher C7;315.3 build 180305 Rel.51282n;1750;
 400;routerSucursalC;1952.168.4.1;00:0a:95:9d:68:19;false;SucursalC;Asus RT-AC68U;3.0.0.4.384_21045;1900;
 500;routerCentral;192.168.5.1;00:0a:95:9d:68:20;true;OficinaCentral;D-Link DIR-890L;1.20B01;3200;

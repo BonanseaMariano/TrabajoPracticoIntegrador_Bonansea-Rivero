@@ -1,8 +1,8 @@
-001;PCPrincipal;192.163.1.100;00:0a:95:9d:68:20;true;Oficina Central;
-002;Laptop-01;192.163.1.101;11:22:33:44:55:66;true;Sala de reuniones;
-003;PCSecundaria;192.163.2.100;00:0a:95:9d:68:21;true;Sucursal A;
-004;Estación-01;192.163.2.101;12:34:56:78:90:AB;true;Área de desarrollo;
-005;PCTerciaria;192.163.3.100;00:0a:95:9d:68:22;true;Sucursal B;
-006;Portátil-02;192.163.3.101;99:88:77:66:55:44;true;Sala de conferencias;
-007;PCCuarto;192.163.4.100;00:0a:95:9d:68:23;true;Sucursal C;
-008;PC-02;192.163.4.101;A1:B2:C3:D4:E5:F6;true;Área de soporte;
+001;PCPrincipal;192.168.1.100;00:0a:95:9d:68:20;true;Oficina Central;
+002;Laptop-01;192.168.1.101;11:22:33:44:55:66;true;Sala de reuniones;
+003;PCSecundaria;192.168.2.100;00:0a:95:9d:68:21;true;Sucursal A;
+004;Estación-01;192.168.2.101;12:34:56:78:90:AB;true;Área de desarrollo;
+005;PCTerciaria;192.168.3.100;00:0a:95:9d:68:22;true;Sucursal B;
+006;Portátil-02;192.168.3.101;99:88:77:66:55:44;true;Sala de conferencias;
+007;PCCuarto;192.168.4.100;00:0a:95:9d:68:23;true;Sucursal C;
+008;PC-02;192.168.4.101;A1:B2:C3:D4:E5:F6;true;Área de soporte;
