@@ -21,7 +21,7 @@ public class Aplicacion {
         try {
             CargarParametros.parametros();
         } catch (IOException e) {
-            System.err.print("Error al cargar par�metros");
+            System.err.print("Error al cargar parametros");
             System.exit(-1);
         }
 
@@ -38,7 +38,7 @@ public class Aplicacion {
             System.exit(-1);
         }
 
-        // Realizar c�lculo (Crear el grafo)
+        // Realizar calculo (Crear el grafo)
         Calculo c = new Calculo(equipos, conexiones);
 
         // Ingreso datos usuario

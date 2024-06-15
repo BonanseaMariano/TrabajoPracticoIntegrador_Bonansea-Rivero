@@ -38,6 +38,15 @@ public class Calculo {
     }
 
     /**
+     * Getter de la red (UNICAMENTE PARA EL TEST)
+     *
+     * @return el grafo de la red de computadoras creado a partir de los archivos
+     */
+    public Graph<Equipo, Conexion> getRedComputadoras() {
+        return redComputadoras;
+    }
+
+    /**
      * Checks if an equipment is online.
      *
      * @param equipo the equipment to check
@@ -118,4 +127,5 @@ public class Calculo {
             }
         }
     }
+
 }
