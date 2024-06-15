@@ -27,7 +27,7 @@ public class Dato {
         cargarComputadoras(equipos, fileNameComputadoras);
         cargarRouters(equipos, fileNameRouters);
         if (equipos.isEmpty()) {
-            throw new FileNotFoundException("No se encontraron datos de equipos");
+            throw new FileNotFoundException();
         }
         return equipos;
     }
@@ -101,22 +101,21 @@ public class Dato {
      */
     public static List<Conexion> cargarConexiones(String fileName, TreeMap<String, Equipo> equipos) throws FileNotFoundException {
         Scanner read;
-        List<Conexion> conexiones = new ArrayList<Conexion>();
+        List<Conexion> conexiones = new ArrayList<>();
         read = new Scanner(new File(fileName));
         read.useDelimiter("\\s*;\\s*");
 
         Equipo v1, v2;
         String tipoDeConexion;
-        double latencia;
         boolean status;
-        int bandwith, errorRate;
+        int bandwith, errorRate, latencia;
 
         while (read.hasNext()) {
             v1 = equipos.get(read.next());
             v2 = equipos.get(read.next());
             tipoDeConexion = read.next();
             bandwith = read.nextInt();
-            latencia = read.nextDouble();
+            latencia = read.nextInt();
             status = read.nextBoolean();
             errorRate = read.nextInt();
             conexiones.add(0, new Conexion(v1, v2, tipoDeConexion, bandwith, latencia, status, errorRate));

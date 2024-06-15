@@ -74,7 +74,12 @@ public class Aplicacion {
                     } else {
                         String message = "";
                         for (Equipo e : path) {
-                            message += e + " -> \n";
+                            if (!path.getLast().equals(e)) {
+                                message += e + " -> \n";
+                            } else {
+                                message += e;
+                            }
+
                         }
                         JOptionPane.showMessageDialog(null, message, "Traceroute", JOptionPane.PLAIN_MESSAGE, null);
                     }

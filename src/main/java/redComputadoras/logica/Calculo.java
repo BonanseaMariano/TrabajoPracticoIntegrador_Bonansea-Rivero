@@ -114,7 +114,7 @@ public class Calculo {
         for (Edge<Conexion> result : redComputadoras.edges()) {
             vert = redComputadoras.endVertices(result);
             if (result.getElement().isStatus() && vert[0].getElement().isStatus() && vert[1].getElement().isStatus()) {
-                copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getBandwith());
+                copia.insertEdge(res.get(vert[0].getElement()), res.get(vert[1].getElement()), result.getElement().getLatencia());
             }
         }
     }

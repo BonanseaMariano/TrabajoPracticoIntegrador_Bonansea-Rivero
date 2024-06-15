@@ -5,7 +5,7 @@ public class Conexion {
     private Equipo equipo2;
     private String tipoDeConexion;
     private int bandwith;
-    private double latencia;
+    private int latencia;
     private boolean status;
     private int errorRate;
 
@@ -13,18 +13,18 @@ public class Conexion {
     public Conexion() {
     }
 
-    public Conexion(Equipo equipo1, Equipo equipo2, String tipoDeConexion, int bandwith, double latencia, boolean status, int errorRate) {
+    public Conexion(Equipo equipo1, Equipo equipo2, String tipoDeConexion, int bandwith, int latencia, boolean status, int errorRate) {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.tipoDeConexion = tipoDeConexion;
+        this.bandwith = bandwith;
 
         //Para evitar que existan arcos negativos (velocidades negativas) para realizar dikstra
-        if (bandwith < 0)
-            this.bandwith = 0;
+        if (latencia < 0)
+            this.latencia = 0;
         else
-            this.bandwith = bandwith;
+            this.latencia = latencia;
 
-        this.latencia = latencia;
         this.status = status;
         this.errorRate = errorRate;
     }
@@ -47,11 +47,11 @@ public class Conexion {
         this.bandwith = bandwith;
     }
 
-    public double getLatencia() {
+    public int getLatencia() {
         return latencia;
     }
 
-    public void setLatencia(double latencia) {
+    public void setLatencia(int latencia) {
         this.latencia = latencia;
     }
 

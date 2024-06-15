@@ -195,8 +195,7 @@ public class GraphAlgorithms {
      * <p>
      * The edge's element is assumed to be its integral weight.
      */
-    public static <V> Map<Vertex<V>, Integer>
-    shortestPathLengths(Graph<V, Integer> g, Vertex<V> src) {
+    public static <V> Map<Vertex<V>, Integer> shortestPathLengths(Graph<V, Integer> g, Vertex<V> src) {
         // d.get(v) is upper bound on distance from src to v
         Map<Vertex<V>, Integer> d = new ProbeHashMap<>();
         // map reachable v to its d value
@@ -244,8 +243,7 @@ public class GraphAlgorithms {
      * The tree is represented as a map from each reachable vertex v (other than s)
      * to the edge e = (u,v) that is used to reach v from its parent u in the tree.
      */
-    public static <V> Map<Vertex<V>, Edge<Integer>>
-    spTree(Graph<V, Integer> g, Vertex<V> s, Map<Vertex<V>, Integer> d) {
+    public static <V> Map<Vertex<V>, Edge<Integer>> spTree(Graph<V, Integer> g, Vertex<V> s, Map<Vertex<V>, Integer> d) {
         Map<Vertex<V>, Edge<Integer>> tree = new ProbeHashMap<>();
         for (Vertex<V> v : d.keySet())
             if (v != s)
