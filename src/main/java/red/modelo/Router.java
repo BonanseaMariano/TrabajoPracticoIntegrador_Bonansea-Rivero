@@ -1,4 +1,4 @@
-package redComputadoras.modelo;
+package red.modelo;
 
 public class Router extends Equipo {
     private String modelo;

@@ -1,4 +1,6 @@
-package redComputadoras.modelo;
+package red.modelo;
+
+import java.util.Objects;
 
 public class Conexion {
     private Equipo equipo1;
@@ -85,6 +87,19 @@ public class Conexion {
 
     public void setEquipo2(Equipo equipo2) {
         this.equipo2 = equipo2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conexion conexion = (Conexion) o;
+        return Objects.equals(equipo1, conexion.equipo1) && Objects.equals(equipo2, conexion.equipo2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(equipo1, equipo2);
     }
 
     @Override

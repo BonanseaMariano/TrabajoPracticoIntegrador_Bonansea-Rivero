@@ -1,12 +1,12 @@
-package redComputadoras.aplicacion;
+package red.aplicacion;
 
 import net.datastructures.TreeMap;
-import redComputadoras.datos.CargarParametros;
-import redComputadoras.datos.Dato;
-import redComputadoras.interfaz.Interfaz;
-import redComputadoras.logica.Calculo;
-import redComputadoras.modelo.Conexion;
-import redComputadoras.modelo.Equipo;
+import red.datos.CargarParametros;
+import red.datos.Dato;
+import red.logica.Calculo;
+import red.interfaz.Interfaz;
+import red.modelo.Conexion;
+import red.modelo.Equipo;
 
 import javax.swing.*;
 import java.io.FileNotFoundException;

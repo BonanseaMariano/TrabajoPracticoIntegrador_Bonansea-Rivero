@@ -1,13 +1,10 @@
-package redComputadoras.interfaz;
+package red.interfaz;
 
 import net.datastructures.Entry;
 import net.datastructures.TreeMap;
-import redComputadoras.aplicacion.Constante;
-import redComputadoras.modelo.Equipo;
+import red.modelo.Equipo;
 
 import javax.swing.*;
-import java.util.Arrays;
-import java.util.List;
 
 public class Interfaz {
 

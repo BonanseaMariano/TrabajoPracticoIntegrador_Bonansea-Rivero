@@ -1,4 +1,4 @@
-package redComputadoras.aplicacion;
+package red.aplicacion;
 
 public class Constante {
 

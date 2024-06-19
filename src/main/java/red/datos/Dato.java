@@ -1,10 +1,10 @@
-package redComputadoras.datos;
+package red.datos;
 
 import net.datastructures.TreeMap;
-import redComputadoras.modelo.Computadora;
-import redComputadoras.modelo.Router;
-import redComputadoras.modelo.Equipo;
-import redComputadoras.modelo.Conexion;
+import red.modelo.Computadora;
+import red.modelo.Router;
+import red.modelo.Equipo;
+import red.modelo.Conexion;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,8 +1,8 @@
-package redComputadoras.logica;
+package red.logica;
 
 import net.datastructures.*;
-import redComputadoras.modelo.Equipo;
-import redComputadoras.modelo.Conexion;
+import red.modelo.Equipo;
+import red.modelo.Conexion;
 
 import java.util.ArrayList;
 import java.util.List;
