@@ -77,7 +77,7 @@ public abstract class Equipo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Equipo equipo = (Equipo) o;
-        return Objects.equals(id, equipo.id);
+        return id.compareToIgnoreCase(equipo.id) == 0;
     }
 
     @Override
