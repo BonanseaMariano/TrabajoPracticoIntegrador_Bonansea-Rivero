@@ -2,6 +2,7 @@ package red.aplicacion;
 
 import net.datastructures.TreeMap;
 import red.datos.CargarParametros;
+import red.datos.Database;
 import red.datos.Dato;
 import red.logica.Calculo;
 import red.interfaz.Interfaz;
@@ -11,6 +12,7 @@ import red.modelo.Equipo;
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Aplicacion {
@@ -29,12 +31,13 @@ public class Aplicacion {
         TreeMap<String, Equipo> equipos = null;
         List<Conexion> conexiones = null;
         try {
-            equipos = Dato.cargarEquipos(CargarParametros.getArchivoComputadora(), CargarParametros.getArchivoRouter());
 
-            conexiones = Dato.cargarConexiones(CargarParametros.getArchivoConexion(), equipos);
+            equipos = Database.cargarEquiposDB();
 
-        } catch (FileNotFoundException e) {
-            System.err.print("Error al cargar archivos de datos");
+            conexiones = Database.cargarConexionesDB(equipos);
+
+        } catch (SQLException e) {
+            System.err.print("Error al cargar base de datos");
             System.exit(-1);
         }
 
