@@ -17,7 +17,8 @@ import static java.sql.DriverManager.getConnection;
 
 public class Database {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/red_computadoras";
+    private static final String DB_URL = "jdbc:mysql://localhost/red_computadoras?serverTimezone=America/Argentina/Buenos_Aires";
+    private static final String PSW = "admin";
 
     public static TreeMap<String, Equipo> cargarEquiposDB() throws SQLException {
         TreeMap<String, Equipo> equipos = new TreeMap<>();
@@ -27,17 +28,17 @@ public class Database {
     }
 
     private static void cargarComputadorasDB(TreeMap<String, Equipo> equipos) throws SQLException {
-        try (Connection connection = getConnection(DB_URL, "root", "");
+        try (Connection connection = getConnection(DB_URL, "root", PSW);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM computadoras")) {
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM computadora")) {
 
             while (resultSet.next()) {
                 String id = resultSet.getString("id");
                 String nombre = resultSet.getString("nombre");
                 String ipAdress = resultSet.getString("ipAdress");
                 String macAdress = resultSet.getString("macAdress");
-                String ubicacion = resultSet.getString("ubicacion");
                 boolean status = resultSet.getBoolean("status");
+                String ubicacion = resultSet.getString("ubicacion");
 
                 Computadora computadora = new Computadora(id, nombre, ipAdress, macAdress, status, ubicacion);
                 equipos.put(id, computadora);
@@ -48,21 +49,20 @@ public class Database {
     }
 
     private static void cargarRoutersDB(TreeMap<String, Equipo> equipos) throws SQLException {
-        try (Connection connection = getConnection(DB_URL, "root", "");
+        try (Connection connection = getConnection(DB_URL, "root", PSW);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM routers")) {
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM router")) {
 
             while (resultSet.next()) {
                 String id = resultSet.getString("id");
                 String nombre = resultSet.getString("nombre");
                 String ipAdress = resultSet.getString("ipAdress");
                 String macAdress = resultSet.getString("macAdress");
+                boolean status = resultSet.getBoolean("status");
                 String ubicacion = resultSet.getString("ubicacion");
                 String modelo = resultSet.getString("modelo");
                 String firmware = resultSet.getString("firmware");
-                boolean status = resultSet.getBoolean("status");
-                double throughput = resultSet.getDouble("troughput");
-
+                double throughput = resultSet.getDouble("throughput");
                 Router router = new Router(id, nombre, ipAdress, macAdress, status, ubicacion, modelo, firmware, throughput);
                 equipos.put(id, router);
             }
@@ -74,9 +74,9 @@ public class Database {
     public static List<Conexion> cargarConexionesDB(TreeMap<String, Equipo> equipos) {
         List<Conexion> conexiones = new ArrayList<>();
 
-        try (Connection connection = getConnection(DB_URL, "root", "");
+        try (Connection connection = getConnection(DB_URL, "root", PSW);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM conexiones")) {
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM conexion")) {
             while (resultSet.next()) {
                 String v1 = resultSet.getString("equipo1");
                 String v2 = resultSet.getString("equipo2");
