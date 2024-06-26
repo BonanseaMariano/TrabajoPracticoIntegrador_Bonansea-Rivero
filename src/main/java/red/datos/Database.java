@@ -17,8 +17,8 @@ import static java.sql.DriverManager.getConnection;
 
 public class Database {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/red_computadoras?serverTimezone=America/Argentina/Buenos_Aires";
-    private static final String PSW = "admin";
+    private static final String DB_URL = "jdbc:mysql://localhost/red_computadoras";
+    private static final String PSW = "";
 
     public static TreeMap<String, Equipo> cargarEquiposDB() throws SQLException {
         TreeMap<String, Equipo> equipos = new TreeMap<>();
