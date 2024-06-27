@@ -1,6 +1,7 @@
 package red.logica;
 
 import net.datastructures.*;
+import org.jgrapht.graph.DefaultDirectedGraph;
 import red.modelo.Equipo;
 import red.modelo.Conexion;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculo {
-
+    public org.jgrapht.Graph<String, Integer> graph;
     private Graph<Equipo, Conexion> redComputadoras;
     private TreeMap<String, Vertex<Equipo>> vertices;
     private TreeMap<String, Equipo> ipMap;
@@ -16,6 +17,7 @@ public class Calculo {
     public Calculo(TreeMap<String, Equipo> equipos, List<Conexion> conexiones) {
 
         redComputadoras = new AdjacencyMapGraph<>(false);
+        graph = new DefaultDirectedGraph<>(Integer.class);
 
         // Cargar equipos
         vertices = new TreeMap<String, Vertex<Equipo>>();
@@ -24,13 +26,17 @@ public class Calculo {
 
         for (Entry<String, Equipo> equipo : equipos.entrySet()) {
             vertices.put(equipo.getKey(), redComputadoras.insertVertex(equipo.getValue()));
+            graph.addVertex(equipo.getValue().getNombre());
             ipMap.put(equipo.getValue().getIpAdress(), equipo.getValue());
         }
 
 
         // Cargar conexiones
-        for (Conexion conexion : conexiones)
+        for (Conexion conexion : conexiones) {
             redComputadoras.insertEdge(vertices.get(conexion.getEquipo1().getId()), vertices.get(conexion.getEquipo2().getId()), conexion);
+            graph.addEdge(conexion.getEquipo1().getNombre(), conexion.getEquipo2().getNombre(), conexion.getLatencia());
+        }
+
     }
 
     public TreeMap<String, Equipo> getIpMap() {

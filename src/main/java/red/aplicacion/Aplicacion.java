@@ -3,20 +3,18 @@ package red.aplicacion;
 import net.datastructures.TreeMap;
 import red.datos.CargarParametros;
 import red.datos.Database;
-import red.datos.Dato;
 import red.logica.Calculo;
 import red.interfaz.Interfaz;
 import red.modelo.Conexion;
 import red.modelo.Equipo;
 
 import javax.swing.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 public class Aplicacion {
-
+    
     public static void main(String[] args) {
 
         // Cargar parametros
@@ -31,11 +29,11 @@ public class Aplicacion {
         TreeMap<String, Equipo> equipos = null;
         List<Conexion> conexiones = null;
         try {
-
+            
             equipos = Database.cargarEquiposDB();
-
+            
             conexiones = Database.cargarConexionesDB(equipos);
-
+            
         } catch (SQLException e) {
             System.err.print("Error al cargar base de datos");
             System.exit(-1);
@@ -61,7 +59,7 @@ public class Aplicacion {
                         JOptionPane.showMessageDialog(null, "Equipo inactivo", "Ping", JOptionPane.ERROR_MESSAGE);
                     }
                     break;
-
+                
                 case Constante.TRACEROUTE:
                     origen = Interfaz.ingresarEquipo(c.getIpMap());
                     if (origen == null) {
@@ -77,17 +75,16 @@ public class Aplicacion {
                     } else {
                         String message = "";
                         for (Equipo e : path) {
-                            if (!path.getLast().equals(e)) {
+                            if (!path.get(path.size()).equals(e)) {
                                 message += e + " -> \n";
                             } else {
                                 message += e;
                             }
-
                         }
                         JOptionPane.showMessageDialog(null, message, "Traceroute", JOptionPane.PLAIN_MESSAGE, null);
                     }
                     break;
-
+                
                 case Constante.TRANSMISION_ENTRE_ROUTERS:
                     String message = "";
                     for (String i : c.transmisionEntreRouters()) {
