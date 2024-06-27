@@ -1,7 +1,7 @@
 package red.logica;
 
 import net.datastructures.*;
-import org.jgrapht.graph.DefaultDirectedGraph;
+import org.jgrapht.graph.WeightedPseudograph;
 import red.modelo.Equipo;
 import red.modelo.Conexion;
 
@@ -9,15 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculo {
-    public org.jgrapht.Graph<String, Integer> graph;
+    private static Calculo instance;
+    private org.jgrapht.Graph<String, Integer> graph;
     private Graph<Equipo, Conexion> redComputadoras;
     private TreeMap<String, Vertex<Equipo>> vertices;
     private TreeMap<String, Equipo> ipMap;
 
-    public Calculo(TreeMap<String, Equipo> equipos, List<Conexion> conexiones) {
+    private Calculo(TreeMap<String, Equipo> equipos, List<Conexion> conexiones) {
 
         redComputadoras = new AdjacencyMapGraph<>(false);
-        graph = new DefaultDirectedGraph<>(Integer.class);
+        graph = new WeightedPseudograph<>(Integer.class);
 
         // Cargar equipos
         vertices = new TreeMap<String, Vertex<Equipo>>();
@@ -26,7 +27,7 @@ public class Calculo {
 
         for (Entry<String, Equipo> equipo : equipos.entrySet()) {
             vertices.put(equipo.getKey(), redComputadoras.insertVertex(equipo.getValue()));
-            graph.addVertex(equipo.getValue().getNombre());
+            graph.addVertex(equipo.getValue().getIpAdress());
             ipMap.put(equipo.getValue().getIpAdress(), equipo.getValue());
         }
 
@@ -34,13 +35,28 @@ public class Calculo {
         // Cargar conexiones
         for (Conexion conexion : conexiones) {
             redComputadoras.insertEdge(vertices.get(conexion.getEquipo1().getId()), vertices.get(conexion.getEquipo2().getId()), conexion);
-            graph.addEdge(conexion.getEquipo1().getNombre(), conexion.getEquipo2().getNombre(), conexion.getLatencia());
+            graph.addEdge(vertices.get(conexion.getEquipo1().getId()).getElement().getIpAdress(), vertices.get(conexion.getEquipo2().getId()).getElement().getIpAdress(), conexion.getLatencia());
         }
 
     }
 
+    public static Calculo CreateInstance(TreeMap<String, Equipo> equipos, List<Conexion> conexiones) {
+        if (instance == null) {
+            instance = new Calculo(equipos, conexiones);
+        }
+        return instance;
+    }
+
+    public static Calculo getInstance() {
+        return instance;
+    }
+
     public TreeMap<String, Equipo> getIpMap() {
         return ipMap;
+    }
+
+    public org.jgrapht.Graph<String, Integer> getGraph() {
+        return graph;
     }
 
     /**

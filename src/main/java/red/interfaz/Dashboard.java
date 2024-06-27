@@ -6,45 +6,42 @@
 package red.interfaz;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
-import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.layout.mxIGraphLayout;
+import com.mxgraph.layout.mxFastOrganicLayout;
 import com.mxgraph.swing.mxGraphComponent;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.sql.SQLException;
+import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-import net.datastructures.TreeMap;
 import org.jgrapht.Graph;
 import org.jgrapht.ext.JGraphXAdapter;
-import red.datos.Database;
+import red.interfaz.paneles.Panel_ping;
+import red.interfaz.paneles.Panel_traceroute;
 import red.logica.Calculo;
-import red.modelo.Conexion;
 import red.modelo.Equipo;
 
 /**
  * @author Antonio
  */
 public class Dashboard extends javax.swing.JFrame {
+    private Equipo origen, destino;
 
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
+        /* Set the Nimbus look and feel */
+        FlatMaterialLighterIJTheme.setup();
         initComponents();
-        InitStyles();
+        initStyles();
         SetDate();
         InitContent();
     }
 
-    private void InitStyles() {
+    private void initStyles() {
         navText.putClientProperty("FlatLaf.style", "font: bold $h3.regular.font");
         navText.setForeground(Color.white);
         dateText.putClientProperty("FlatLaf.style", "font: 24 $light.font");
@@ -67,19 +64,34 @@ public class Dashboard extends javax.swing.JFrame {
         mxGraphComponent graphComponent = new mxGraphComponent(graphAdapter);
         graphComponent.setPreferredSize(new Dimension(1030, 520));
 
-        // Añadir el componente del grafo al panel content
-        content.add(graphComponent, BorderLayout.CENTER);
+        // Crear un layout para ajustar la posición de los nodos
+        mxFastOrganicLayout layout = new mxFastOrganicLayout(graphAdapter);
+        layout.setForceConstant(60);
 
+        // Ejecutar el layout para ajustar la posición de los nodos
+        layout.execute(graphAdapter.getDefaultParent());
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(graphComponent, BorderLayout.CENTER);
+
+        ShowJPanel(panel);
     }
 
     private void InitContent() {
-
+        visualGrafo(Calculo.getInstance().getGraph());
     }
 
     public static void ShowJPanel(JPanel p) {
-        p.setSize(750, 430);
-        p.setLocation(0, 0);
+        p.setBounds(0, 0, content.getWidth(), content.getHeight());
+        content.removeAll();
+        content.add(p, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }
 
+    public static void ShowJScrollPanel(JScrollPane p) {
+        p.setBounds(0, 0, content.getWidth(), content.getHeight());
         content.removeAll();
         content.add(p, BorderLayout.CENTER);
         content.revalidate();
@@ -101,15 +113,15 @@ public class Dashboard extends javax.swing.JFrame {
         btn_ping = new javax.swing.JButton();
         btn_traceroute = new javax.swing.JButton();
         btn_transentrerout = new javax.swing.JButton();
-        btn_books = new javax.swing.JButton();
-        btn_reports = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         navText = new javax.swing.JLabel();
         dateText = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Red de computadoras");
         setMinimumSize(new java.awt.Dimension(1050, 660));
+        setResizable(false);
 
         background.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -180,44 +192,10 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btn_books.setBackground(new java.awt.Color(21, 101, 192));
-        btn_books.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_books.setForeground(new java.awt.Color(255, 255, 255));
-        btn_books.setText("Libros");
-        btn_books.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 13, 1, 1, new java.awt.Color(0, 0, 0)));
-        btn_books.setBorderPainted(false);
-        btn_books.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_books.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_books.setIconTextGap(13);
-        btn_books.setInheritsPopupMenu(true);
-        btn_books.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_booksActionPerformed(evt);
-            }
-        });
-
-        btn_reports.setBackground(new java.awt.Color(21, 101, 192));
-        btn_reports.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_reports.setForeground(new java.awt.Color(255, 255, 255));
-        btn_reports.setText("Reportes");
-        btn_reports.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 13, 1, 1, new java.awt.Color(0, 0, 0)));
-        btn_reports.setBorderPainted(false);
-        btn_reports.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_reports.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_reports.setIconTextGap(13);
-        btn_reports.setInheritsPopupMenu(true);
-        btn_reports.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_reportsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_books, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btn_reports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(0, 303, Short.MAX_VALUE)
                 .addComponent(btn_actgraf, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,14 +216,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(btn_ping, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_traceroute, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_transentrerout, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(btn_books, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         header.setBackground(new java.awt.Color(153, 153, 153));
@@ -277,7 +248,17 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setLayout(new java.awt.BorderLayout());
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 527, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -290,11 +271,11 @@ public class Dashboard extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -305,75 +286,46 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_actgrafActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actgrafActionPerformed
-        // Cargar datos
-        TreeMap<String, Equipo> equipos = null;
-        List<Conexion> conexiones = null;
-        try {
-
-            equipos = Database.cargarEquiposDB();
-
-            conexiones = Database.cargarConexionesDB(equipos);
-
-        } catch (SQLException e) {
-            System.err.print("Error al cargar base de datos");
-            System.exit(-1);
-        }
-
-        // Realizar calculo (Crear el grafo)
-        Calculo c = new Calculo(equipos, conexiones);
-
-        visualGrafo(c.graph);
-    }//GEN-LAST:event_btn_actgrafActionPerformed
+    private void btn_actgrafActionPerformed(java.awt.event.ActionEvent evt) {
+        visualGrafo(Calculo.getInstance().getGraph());
+    }
 
     private void btn_pingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pingActionPerformed
-
+        ShowJPanel(new Panel_ping());
     }//GEN-LAST:event_btn_pingActionPerformed
 
     private void btn_tracerouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tracerouteActionPerformed
-
+        ShowJPanel(new Panel_traceroute());
     }//GEN-LAST:event_btn_tracerouteActionPerformed
 
     private void btn_transentreroutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_transentreroutActionPerformed
+        String message = "";
+        for (String i : Calculo.getInstance().transmisionEntreRouters()) {
+            message += i + "\n";
+        }
+        JTextArea textArea = new JTextArea(message);
+        textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.putClientProperty("FlatLaf.style", "font: 22 $light.font");
 
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        ShowJScrollPanel(scrollPane);
     }//GEN-LAST:event_btn_transentreroutActionPerformed
-
-    private void btn_booksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_booksActionPerformed
-
-    }//GEN-LAST:event_btn_booksActionPerformed
-
-    private void btn_reportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_reportsActionPerformed
-
-    }//GEN-LAST:event_btn_reportsActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        FlatMaterialLighterIJTheme.setup();
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
     private javax.swing.JButton btn_actgraf;
-    private javax.swing.JButton btn_books;
     private javax.swing.JButton btn_ping;
-    private javax.swing.JButton btn_reports;
     private javax.swing.JButton btn_traceroute;
     private javax.swing.JButton btn_transentrerout;
     private static javax.swing.JPanel content;

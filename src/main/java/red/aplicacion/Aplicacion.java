@@ -3,12 +3,11 @@ package red.aplicacion;
 import net.datastructures.TreeMap;
 import red.datos.CargarParametros;
 import red.datos.Database;
+import red.interfaz.Dashboard;
 import red.logica.Calculo;
-import red.interfaz.Interfaz;
 import red.modelo.Conexion;
 import red.modelo.Equipo;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -39,60 +38,8 @@ public class Aplicacion {
             System.exit(-1);
         }
 
-        // Realizar calculo (Crear el grafo)
-        Calculo c = new Calculo(equipos, conexiones);
-
-        // Ingreso datos usuario
-        Integer opcion = null;
-        do {
-            Equipo origen, destino;
-            opcion = Interfaz.opcion();
-            switch (opcion) {
-                case Constante.PING:
-                    Equipo equipo = Interfaz.ingresarEquipo(c.getIpMap());
-                    if (equipo == null) {
-                        break;
-                    }
-                    if (c.ping(equipo)) {
-                        JOptionPane.showMessageDialog(null, "Equipo activo", "Ping", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Equipo inactivo", "Ping", JOptionPane.ERROR_MESSAGE);
-                    }
-                    break;
-                
-                case Constante.TRACEROUTE:
-                    origen = Interfaz.ingresarEquipo(c.getIpMap());
-                    if (origen == null) {
-                        break;
-                    }
-                    destino = Interfaz.ingresarEquipo(c.getIpMap());
-                    if (destino == null) {
-                        break;
-                    }
-                    List<Equipo> path = c.traceroute(origen, destino);
-                    if (path.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "No hay ruta", "Traceroute", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        String message = "";
-                        for (Equipo e : path) {
-                            if (!path.get(path.size()).equals(e)) {
-                                message += e + " -> \n";
-                            } else {
-                                message += e;
-                            }
-                        }
-                        JOptionPane.showMessageDialog(null, message, "Traceroute", JOptionPane.PLAIN_MESSAGE, null);
-                    }
-                    break;
-                
-                case Constante.TRANSMISION_ENTRE_ROUTERS:
-                    String message = "";
-                    for (String i : c.transmisionEntreRouters()) {
-                        message += i + "\n";
-                    }
-                    JOptionPane.showMessageDialog(null, message, "Transmision entre routers", JOptionPane.PLAIN_MESSAGE, null);
-                    break;
-            }
-        } while (opcion != null && !opcion.equals(Constante.SALIR));
+        Calculo.CreateInstance(equipos, conexiones);
+        Dashboard d = new Dashboard();
+        d.setVisible(true);
     }
 }
